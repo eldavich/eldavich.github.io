@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>David Chapín | Perfil Profesional</title>
+    <title>David Chapín | Gestión Cultural</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,7 +19,6 @@
             --accent-color: #2563eb;
             --accent-hover: #1d4ed8;
             --border-color: #e2e8f0;
-            --input-bg: #f8fafc;
         }
 
         @media (prefers-color-scheme: dark) {
@@ -31,7 +30,6 @@
                 --accent-color: #3b82f6;
                 --accent-hover: #60a5fa;
                 --border-color: #334155;
-                --input-bg: #0f172a;
             }
         }
 
@@ -65,7 +63,6 @@
             transition: background-color 0.3s ease, border-color 0.3s ease;
         }
 
-        /* Avatar / Foto ficticia moderna */
         .avatar {
             width: 110px;
             height: 110px;
@@ -90,7 +87,8 @@
 
         .tagline {
             color: var(--text-muted);
-            font-size: 1rem;
+            font-size: 0.95rem;
+            line-height: 1.5;
             margin-bottom: 24px;
         }
 
@@ -98,13 +96,13 @@
         .social-links {
             display: flex;
             justify-content: center;
-            gap: 16px;
-            margin-bottom: 30px;
+            gap: 18px;
+            margin-bottom: 10px;
         }
 
         .social-icon {
             color: var(--text-muted);
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             transition: color 0.2s ease, transform 0.2s ease;
             text-decoration: none;
         }
@@ -117,81 +115,61 @@
         hr {
             border: 0;
             border-top: 1px solid var(--border-color);
-            margin: 24px 0;
+            margin: 28px 0;
         }
 
-        /* Formulario de Contacto */
+        /* Sección de Contacto Directo */
         .contact-section h2 {
             font-size: 1.2rem;
-            margin-bottom: 16px;
+            margin-bottom: 10px;
             color: var(--text-main);
-            text-align: left;
         }
 
-        .form-group {
-            margin-bottom: 14px;
-            text-align: left;
-        }
-
-        label {
-            display: block;
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-bottom: 6px;
+        .contact-section p {
+            font-size: 0.9rem;
             color: var(--text-muted);
+            margin-bottom: 20px;
         }
 
-        input, textarea {
+        .btn-contact {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
             width: 100%;
-            padding: 12px 14px;
-            border-radius: 10px;
-            border: 1px solid var(--border-color);
-            background-color: var(--input-bg);
-            color: var(--text-main);
-            font-family: inherit;
-            font-size: 0.95rem;
-            transition: border-color 0.2s, box-shadow 0.2s;
-        }
-
-        input:focus, textarea:focus {
-            outline: none;
-            border-color: var(--accent-color);
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
-        }
-
-        textarea {
-            resize: vertical;
-            min-height: 90px;
-        }
-
-        button {
-            width: 100%;
-            padding: 14px;
+            padding: 16px;
             border: none;
-            border-radius: 12px;
+            border-radius: 14px;
             background-color: var(--accent-color);
             color: white;
             font-size: 1rem;
             font-weight: 600;
-            cursor: pointer;
+            text-decoration: none;
             transition: background-color 0.2s ease, transform 0.1s ease;
-            margin-top: 10px;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
         }
 
-        button:hover {
+        .btn-contact:hover {
             background-color: var(--accent-hover);
         }
 
-        button:active {
+        .btn-contact:active {
             transform: scale(0.98);
         }
 
-        /* Datos Básicos Pie */
+        /* Ficha de Datos Básicos Pie */
         .footer-info {
-            margin-top: 24px;
             font-size: 0.85rem;
             color: var(--text-muted);
-            line-height: 1.5;
+            line-height: 1.6;
+        }
+
+        .footer-info p {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 4px;
         }
     </style>
 </head>
@@ -201,7 +179,7 @@
         <div class="avatar">DC</div>
         
         <h1>David Chapín</h1>
-        <p class="tagline">Especialista Digital & Perfil Profesional</p>
+        <p class="tagline">Gestión Cultural. Perfil Digital & Profesional</p>
 
         <div class="social-links">
             <a href="https://www.linkedin.com/in/soydavidchapin/" target="_blank" class="social-icon" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
@@ -213,39 +191,28 @@
         <hr>
 
         <div class="contact-section">
-            <h2>Enviar un mensaje</h2>
-            <form action="https://formsubmit.co/david@chapin.es" method="POST">
-                
-                <input type="hidden" name="_captcha" value="false">
-                <input type="hidden" name="_next" value="https://david.chapin.es">
-
-                <div class="form-group">
-                    <label for="name">Nombre</label>
-                    <input type="text" id="name" name="name" placeholder="Tu nombre" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="email">Email de contacto</label>
-                    <input type="email" id="email" name="email" placeholder="tu@email.com" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="message">Mensaje</label>
-                    <textarea id="message" name="message" placeholder="¿En qué puedo ayudarte?" required></textarea>
-                </div>
-
-                <button type="submit">Enviar Mensaje</button>
-            </form>
+            <h2>¿Hablamos?</h2>
+            <p>Haz clic abajo para enviarme un correo directamente desde tu aplicación de email predeterminada.</p>
+            
+            <a href="mailto:david@chapin.es?subject=Contacto%20desde%20la%20web&body=Hola%20David,%20me%20pongo%20en%20contacto%20contigo%20porque..." class="btn-contact">
+                <i class="fas fa-envelope"></i> Enviar un correo electrónico
+            </a>
         </div>
 
         <hr>
 
         <div class="footer-info">
-            <p><i class="fas fa-envelope"></i> david@chapin.es</p>
+            <p><i class="fas fa-at"></i> david@chapin.es</p>
             <p><i class="fas fa-globe"></i> david.chapin.es</p>
-            <p style="margin-top: 10px; font-size: 0.75rem;">© 2026 David Chapín. Todos los derechos reservados.</p>
+            <p style="margin-top: 14px; font-size: 0.75rem;">
+                © <span id="current-year"></span> David Chapín. Todos los derechos reservados.
+            </p>
         </div>
     </div>
+
+    <script>
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
 
 </body>
 </html>
