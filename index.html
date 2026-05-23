@@ -49,6 +49,45 @@
             min-height: 100vh;
             padding: 20px;
             transition: background-color 0.3s ease;
+            position: relative;
+        }
+
+        /* Selector de Idioma Flotante */
+        .lang-switcher {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 4px;
+            border-radius: 30px;
+            display: flex;
+            gap: 2px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            z-index: 10;
+        }
+
+        .lang-btn {
+            background: none;
+            border: none;
+            padding: 6px 14px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            cursor: pointer;
+            border-radius: 20px;
+            transition: all 0.2s ease;
+        }
+
+        .lang-btn.active {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        /* Control de visibilidad de idiomas */
+        [lang="es"] .en,
+        [lang="en"] .es {
+            display: none !important;
         }
 
         .profile-container {
@@ -63,12 +102,11 @@
             transition: background-color 0.3s ease, border-color 0.3s ease;
         }
 
-        /* Avatar con efecto de destello de luz y gradiente animado continuo */
+        /* Avatar animado */
         .avatar {
             width: 110px;
             height: 110px;
             border-radius: 50%;
-            /* Estiramos el degradado al 200% para poder desplazarlo y generar el efecto de brillo */
             background: linear-gradient(135deg, var(--accent-color), #ec4899, var(--accent-color));
             background-size: 200% 200%;
             margin: 0 auto 20px;
@@ -82,21 +120,10 @@
             animation: glowShift 6s ease-in-out infinite;
         }
 
-        /* Animación fluida para simular el cambio de luz */
         @keyframes glowShift {
-            0% {
-                background-position: 0% 50%;
-                box-shadow: 0 4px 14px rgba(37, 99, 235, 0.2);
-            }
-            50% {
-                background-position: 100% 50%;
-                /* El brillo de la sombra acompaña el tono predominante */
-                box-shadow: 0 6px 20px rgba(236, 72, 153, 0.4);
-            }
-            100% {
-                background-position: 0% 50%;
-                box-shadow: 0 4px 14px rgba(37, 99, 235, 0.2);
-            }
+            0% { background-position: 0% 50%; box-shadow: 0 4px 14px rgba(37, 99, 235, 0.2); }
+            50% { background-position: 100% 50%; box-shadow: 0 6px 20px rgba(236, 72, 153, 0.4); }
+            100% { background-position: 0% 50%; box-shadow: 0 4px 14px rgba(37, 99, 235, 0.2); }
         }
 
         h1 {
@@ -170,13 +197,8 @@
             box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
         }
 
-        .btn-contact:hover {
-            background-color: var(--accent-hover);
-        }
-
-        .btn-contact:active {
-            transform: scale(0.98);
-        }
+        .btn-contact:hover { background-color: var(--accent-hover); }
+        .btn-contact:active { transform: scale(0.98); }
 
         /* Ficha de Datos Básicos Pie */
         .footer-info {
@@ -196,11 +218,18 @@
 </head>
 <body>
 
+    <div class="lang-switcher">
+        <button class="lang-btn" onclick="setLanguage('es')" id="btn-es">ES</button>
+        <button class="lang-btn" onclick="setLanguage('en')" id="btn-en">EN</button>
+    </div>
+
     <div class="profile-container">
         <div class="avatar">DC</div>
         
         <h1>David Chapín</h1>
-        <p class="tagline">Gestión Cultural. Perfil Digital & Profesional</p>
+        
+        <p class="tagline es">Gestión Cultural. Perfil Digital & Profesional</p>
+        <p class="tagline en">Cultural Management. Digital & Professional Profile</p>
 
         <div class="social-links">
             <a href="https://www.linkedin.com/in/soydavidchapin/" target="_blank" class="social-icon" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
@@ -212,11 +241,17 @@
         <hr>
 
         <div class="contact-section">
-            <h2>¿Hablamos?</h2>
-            <p>Haz clic abajo para enviarme un correo directamente desde tu aplicación de email predeterminada.</p>
+            <h2 class="es">¿Hablamos?</h2>
+            <h2 class="en">Let's talk</h2>
             
-            <a href="mailto:david@chapin.es?subject=Contacto%20desde%20la%20web&body=Hola%20David,%20me%20pongo%20en%20contacto%20contigo%20porque..." class="btn-contact">
+            <p class="es">Haz clic abajo para enviarme un correo directamente desde tu aplicación de email predeterminada.</p>
+            <p class="en">Click below to send me an email directly from your default mail application.</p>
+            
+            <a href="mailto:david@chapin.es?subject=Contacto%20desde%20la%20web&body=Hola%20David,%20me%20pongo%20en%20contacto%20contigo%20porque..." class="btn-contact es">
                 <i class="fas fa-envelope"></i> Enviar un correo electrónico
+            </a>
+            <a href="mailto:david@chapin.es?subject=Contact%20from%20website&body=Hello%20David,%20I%20am%20reaching%20out%20to%20you%20because..." class="btn-contact en">
+                <i class="fas fa-envelope"></i> Send an email
             </a>
         </div>
 
@@ -226,13 +261,47 @@
             <p><i class="fas fa-at"></i> david@chapin.es</p>
             <p><i class="fas fa-globe"></i> david.chapin.es</p>
             <p style="margin-top: 14px; font-size: 0.75rem;">
-                © <span id="current-year"></span> David Chapín. Todos los derechos reservados.
+                © <span id="current-year"></span> David Chapín. <span class="es">Todos los derechos reservados.</span><span class="en">All rights reserved.</span>
             </p>
         </div>
     </div>
 
     <script>
+        // Configurar el año actual de forma automática
         document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // Función para aplicar el idioma seleccionado
+        function setLanguage(lang) {
+            // Guardar la preferencia en el navegador del usuario para futuras visitas
+            localStorage.setItem('preferred-lang', lang);
+            
+            // Cambiar el atributo 'lang' de la etiqueta HTML principal
+            document.documentElement.setAttribute('lang', lang);
+            
+            // Actualizar el estado visual de los botones del selector
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(`btn-${lang}`).classList.add('active');
+        }
+
+        // Lógica de detección automática al cargar la página
+        (function() {
+            // 1. Mirar si el usuario ya eligió un idioma manualmente en el pasado
+            const savedLang = localStorage.getItem('preferred-lang');
+            
+            if (savedLang === 'es' || savedLang === 'en') {
+                setLanguage(savedLang);
+            } else {
+                // 2. Si no hay preferencia guardada, leer el idioma del navegador
+                const browserLang = navigator.language || navigator.userLanguage;
+                
+                // Si el idioma del navegador empieza por "en", ponemos inglés. Si no, por defecto español.
+                if (browserLang.startsWith('en')) {
+                    setLanguage('en');
+                } else {
+                    setLanguage('es');
+                }
+            }
+        })();
     </script>
     <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1bfe56869739403bb2b1727539059bd6"}'></script></body>
 </html>
